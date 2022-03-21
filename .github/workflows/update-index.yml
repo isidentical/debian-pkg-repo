@@ -1,0 +1,31 @@
+name: Update Index
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+
+      - name: Import GPG Key
+        run: |
+          echo ${GPG_KEY} > /tmp/private-key.asc
+          gpg --import /tmp/private-key.asc
+        env:
+          GPG_KEY: ${{ secrets.GPG_KEY }}
+
+      - name: Fetch Releases
+        run: python fetch_releases.py
+        env:
+          GITHUB_USER: ${{ secrets.GITHUB_USER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Package Index
+        run: python create_package_index.py
+        env:
+          GPG_KEY_EMAIL: ${{ secrets.GPG_KEY_EMAIL }}
