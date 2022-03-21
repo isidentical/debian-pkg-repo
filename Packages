@@ -1,0 +1,18 @@
+Package: httpie
+Version: 3.1.0
+Architecture: amd64
+Maintainer: <@d87ac1c1532d>
+Installed-Size: 36714
+Depends: python3 (>= 3.7), python3-pip
+Filename: archive/httpie-cli_3.1.0-0.deb
+Size: 27632182
+MD5sum: c809d34e59cfb7783dc667193c469213
+SHA1: 1eb3263d2f5b8c5af9ebd272131aee9e42ffe8cd
+SHA256: 2bdf978ee7374e6bc7b58571d5a73bb6c8a2b616c83cff47dd91ca0d3df728d5
+Section: default
+Priority: extra
+Homepage: http://example.com/no-uri-given
+Description: HTTPie: modern, user-friendly command-line HTTP client for the API era.
+License: BSD
+Vendor: none
+
