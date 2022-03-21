@@ -4,7 +4,7 @@ Architecture: amd64
 Maintainer: <@d87ac1c1532d>
 Installed-Size: 36714
 Depends: python3 (>= 3.7), python3-pip
-Filename: /home/isidentical/projects/debian-pkg-repo/httpie-cli_3.1.0-0.deb
+Filename: ./httpie-cli_3.1.0-0.deb
 Size: 27632182
 MD5sum: c809d34e59cfb7783dc667193c469213
 SHA1: 1eb3263d2f5b8c5af9ebd272131aee9e42ffe8cd
