@@ -7,7 +7,7 @@ from typing import List, Union, Optional
 
 
 GPG_KEY_EMAIL = os.getenv("GPG_KEY_EMAIL")
-ARCHIVE_DIR = Path("archive/")
+CURRENT_DIR = Path(__file__).parent
 
 
 def call(
@@ -28,7 +28,7 @@ def call(
 
 def create_key_file() -> None:
     # Create GPG key file.
-    call(["gpg", "--armor", "--export"], forward_to="KEY.gpg")
+    call(["gpg", "--yes", "--armor", "--export"], forward_to="KEY.gpg")
 
 
 def create_packages() -> None:
@@ -37,7 +37,7 @@ def create_packages() -> None:
         [
             "dpkg-scanpackages",
             "--multiversion",
-            ARCHIVE_DIR,
+            CURRENT_DIR,
         ],
         forward_to="Packages",
     )
@@ -48,7 +48,7 @@ def create_packages() -> None:
 def create_release_files() -> None:
     # Create Release, Release.gpg, InRelease
     call(
-        ["apt-ftparchive", "release", ARCHIVE_DIR],
+        ["apt-ftparchive", "release", CURRENT_DIR],
         forward_to="Release",
     )
 
@@ -59,6 +59,7 @@ def create_release_files() -> None:
         call(
             [
                 "gpg",
+                "--yes",
                 "--default-key",
                 GPG_KEY_EMAIL,
                 option,
