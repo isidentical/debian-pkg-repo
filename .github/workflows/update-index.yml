@@ -33,3 +33,12 @@ jobs:
         run: python create_package_index.py
         env:
           GPG_KEY_EMAIL: ${{ secrets.GPG_KEY_EMAIL }}
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "[automated] Package Index Update"
+          title: "[automated] Package Index Update"
+          committer: "Batuhan Taskaya <isidentical@gmail.com>"
+          delete-branch: true
