@@ -7,7 +7,7 @@ from typing import List, Union, Optional
 
 
 GPG_KEY_EMAIL = os.getenv("GPG_KEY_EMAIL")
-CURRENT_DIR = Path(__file__).parent
+CURRENT_DIR = Path()
 
 
 def call(

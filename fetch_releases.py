@@ -15,7 +15,7 @@ GITHUB_USER = os.getenv("GITHUB_USER")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_AUTH = (GITHUB_USER, GITHUB_TOKEN)
 
-DEFAULT_PATH = Path(__file__).parent
+DEFAULT_PATH = Path()
 
 
 def iter_releases(repo: str) -> Iterator[Dict[str, Any]]:
