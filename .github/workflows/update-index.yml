@@ -14,16 +14,17 @@ jobs:
 
       - name: Import GPG Key
         run: |
-          echo ${GPG_KEY} > /tmp/private-key.asc
-          gpg --import /tmp/private-key.asc
+          echo -n "$GPG_KEY" | \
+          base64 --decode | \
+          gpg --import
         env:
           GPG_KEY: ${{ secrets.GPG_KEY }}
 
       - name: Fetch Releases
         run: python fetch_releases.py
         env:
-          GITHUB_USER: ${{ secrets.GITHUB_USER }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: ${{ secrets.GH_USER }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Create Package Index
         run: python create_package_index.py
