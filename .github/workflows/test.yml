@@ -1,0 +1,16 @@
+name: Tests
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo '::set-output name=MY_ARRAY::(x y z)'
+        id: array-step
+      - run: for i in ${{ steps.array-step.outputs.MY_ARRAY }}; echo "$i"; done
